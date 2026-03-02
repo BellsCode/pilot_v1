@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PWA meta-tags -->
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Quiz">
+    
+    <title>Quiz App</title>
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Ikoner -->
+    <link rel="icon" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Splash/Start-skjerm -->
+    <div class="screen" id="startScreen">
+        <div class="quiz-container">
+            <div class="app-header">
+                <span class="app-icon">🧠</span>
+                <h1>Quiz App</h1>
+                <p class="subtitle">Test kunnskapene dine!</p>
+            </div>
+            <div class="category-select">
+                <h3>Velg kategori:</h3>
+                <div class="categories" id="categories"></div>
+            </div>
+            <button class="primary-btn" id="startBtn" onclick="startQuiz()">
+                Start Quiz 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- Quiz-skjerm -->
+    <div class="screen hidden" id="quizScreen">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <span class="back-btn" onclick="goHome()">← Tilbake</span>
+                <span class="score-display" id="scoreDisplay">0 poeng</span>
+            </div>
+            <div class="progress-info">
+                <span id="progress">Spørsmål 1 av 5</span>
+                <span id="timer" class="timer">⏱ 15</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="question" id="question"></div>
+            <div class="answers" id="answers"></div>
+            <button class="next-btn" id="nextBtn" onclick="nextQuestion()">
+                Neste spørsmål →
+            </button>
+        </div>
+    </div>
+
+    <!-- Resultat-skjerm -->
+    <div class="screen hidden" id="resultScreen">
+        <div class="quiz-container">
+            <div class="result">
+                <div class="result-icon" id="resultIcon">🏆</div>
+                <h2 id="resultTitle">Quiz ferdig!</h2>
+                <div class="score-circle">
+                    <span class="score-number" id="scoreNumber">0</span>
+                    <span class="score-label">poeng</span>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-value" id="correctCount">0</span>
+                        <span class="stat-label">Riktige</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="wrongCount">0</span>
+                        <span class="stat-label">Feil</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-value" id="timeTotal">0s</span>
+                        <span class="stat-label">Tid brukt</span>
+                    </div>
+                </div>
+                <p class="result-message" id="resultMessage"></p>
+                <div class="result-actions">
+                    <button class="primary-btn" onclick="restartQuiz()">
+                        Prøv igjen 🔄
+                    </button>
+                    <button class="secondary-btn" onclick="goHome()">
+                        Velg kategori 📚
+                    </button>
+                    <button class="share-btn" onclick="shareResult()">
+                        Del resultat 📤
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Install prompt -->
+    <div class="install-prompt hidden" id="installPrompt">
+        <p>📱 Installer som app!</p>
+        <button onclick="installApp()">Installer</button>
+        <button onclick="dismissInstall()">Ikke nå</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
